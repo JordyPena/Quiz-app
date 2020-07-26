@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+  <body>
+    <main class="container">
+      
+      
+        
+        <div class="quiz-box start-photo" id="startQuiz">
+          <h1>Frenchie trivia time!</h1>
+          
+          <img src="images/smart.jpg" alt="french bulldog wearing glasses"
+          class="images" id="smartImage">
+          <button type="button" class="button" id="startButton">Start</button>
+        </div> 
+        <div class="question-box">
+          <section id="statBars">
+            <ul>
+              <li>Question:
+                <span id="questionNumber">0</span>/5
+              </li>
+              <li>Score:
+                <span id="score">0</span>
+              </li>
+            </ul>
+           
+          </section>
+          <span id="question">Where do French bulldogs originate from?</span>
+          
+          <form id="quiz-list">
+            
+            <input id="answer0" name="choices" type="radio" value="Answer0"/>
+              <label id="answerLabel0" for="Answer0">Answer1</label><br/>
+            
+            <input id="answer1" name="choices" type="radio" value="Answer1"/>
+              <label id="answerLabel1" for="Answer1">Answer2</label><br/>
+            
+            <input id="answer2" name="choices" type="radio" value="Answer2"/>
+              <label id="answerLabel2" for="Answer2">Answer3</label><br/>
+            
+            <input id="answer3" name="choices" type="radio" value="Answer3"/>
+              <label id="answerLabel3" for="Answer3">Answer4</label><br/>
+              
+            <input type="submit" value="submit" id="submit" class="submit, button"/>
+          </form>
+          
+            
+        </div>
+          <div id="response" class="response-box">
+        
+          </div> 
+        <div id="finalStats" class="done-box">
+          <p>You correctly answered</p>
+          <p id="stat">Score</p>
+          <p>Thank you for playing!</p> 
+        </div>
+        
+    </main>
+        
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
