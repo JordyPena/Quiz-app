@@ -13,7 +13,7 @@ const STORE = [
     question: "How can French bulldogs swim?",
     answers: [
       "Naturally",
-      "French bulldogs cant swim",
+      "French bulldogs can't swim",
       "Maybe? if you teach them",
       "With a life jacket"
     ],
@@ -34,7 +34,7 @@ const STORE = [
     answers: [
       "Topgun",
       "Titanic",
-      "Jurassicpark",
+      "Jurassic Park",
       "Dark Knight"
     ],
     correctAnswer: "Titanic"
@@ -100,9 +100,8 @@ function displayQuestion() {
   else {
     $("#stat").text(score);
     $(".question-box").hide();
-    $("#finalStats").show();
-    $("#finalStats").append(" <button id='restartButton' type='button' class='button'>Restart</button>")
-  }
+    $("#finalStats").show();  
+  }  
 }
 
 
@@ -115,46 +114,33 @@ function checkAnswer(e) {
   e.preventDefault();
   let userChoice = $("input[name = 'choices']:checked")[0].value;
   let correctAnswer = STORE[questionNumber].correctAnswer;
+  
   if (userChoice === correctAnswer) {
     score++;
+    $("#correct-wrong").text("correct!");
     if (questionNumber === 4) {
-      //if answer 5 is correct display The rock photo
-      $("#response").html(
-        `<div id='correct'><h3>Your answer is correct!</h3>  
-        <img src='images/the-rock.jpg' alt='the rock and hobbs'
-        class='images' width='200px'/></div>
-        `
-      )
+      $("#responseImage").attr("src", "images/the-rock.jpg").attr("alt", "the rock holding a dog");
+    
     } else {
- // if answer is correct display happy frenchie goodjob
-    //increase score
-      $("#response").html(
-        `<div id='correct'><h3>Your answer is correct!</h3>  
-        <img src='images/happy.jpg' alt='happy french bulldog'
-        class='images' width='200px'/></div>
-        `
-      );
-     
+      $("#responseImage").attr("src", "images/happy.jpg").attr("alt", "happy dog");
       
     }
-   
-    //if answer is wrong display sad frenchie and correct answer
-  } else {
-    $("#response").html(
-      `<div id='wrong'><h3>That's the wrong answer...</h3>
-      <img src='images/sad.jpg' alt='sad french bulldog'
-      class='images' width='200px'>
-      <p class='wrongAnsTxT'>It's actually:</p>
-      <p class='wrongAnsTxt'>${STORE[questionNumber].correctAnswer}</p>
-     </div>`
-    )
-
     
+  } else {
+    $("#responseImage").attr("src", "images/sad.jpg").attr("alt", "sad dog");
+    $("#correct-wrong").text("wrong!");
+    $("#wrongAnsTxt").text(STORE[questionNumber].correctAnswer);
+
   } 
-  //adds next button to response
-  $("#response").append(" <button id='nextButton' type='button' class='button'>Next</button>")
   
+  
+  
+ 
 }
+
+
+
+
 
 // display next question
 //add to questionNumber
@@ -166,60 +152,59 @@ function nextQuestion() {
   displayQuestion();
  
 }
-
-
-  
-    
-      
-      
-
- 
-  
-  
-  
-  
-
-$(document).ready(function(){
-  $("#response").hide();
-  $("#finalStats").hide();
-  $(".question-box").hide();
-  //start quiz
+ //start quiz
 //--click a button to start
 //--listen for a click on the start button
 //--create id for start button to distingish from other buttons
+function startButtonListener() {
   $("#startButton").on("click", function(event) {
     $("#startQuiz").hide();
     $(".question-box").show();
     displayQuestion();
   });
-  
+}
 //-----------------
 //submit answer
+function submitButtonListener() {
   $("#submit").on("click", function(event) {
     checkAnswer(event);
     $("#response").show();
     $(".question-box").hide();
   });
-  //---------
+}
+//---------
   //Go to next question
+function nextButtonListener() {
   $("body").on("click", "#nextButton", function(event) {
     nextQuestion();
-    $("#wrong, #correct, #nextButton").hide();
+    $("#wrong, #correct").hide();
     $("#response").hide();
-    
-    //restart quiz
-    $("body").on("click", "#restartButton", function(event) {
-      event.preventDefault();
-      resetStats();
-      $("#startQuiz").show();
-      $("#finalStats").hide();
-      
-    });
-
-    
-
   });
+}
+ //restart quiz
+function restartButtonListener() {
+  $("#restartButton").on("click", function(event) {
+    event.preventDefault();
+    resetStats();
+    $("#startQuiz").show();
+    $("#finalStats").hide();
+    
+  });
+
+}
 
 
   
-})
+    
+      
+    
+$(document).ready(function(){
+  $("#response").hide();
+  $("#finalStats").hide();
+  $(".question-box").hide();
+ 
+  startButtonListener();
+  submitButtonListener();
+  nextButtonListener();
+  restartButtonListener(); 
+});
