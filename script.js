@@ -17,7 +17,7 @@ const STORE = [
       "Maybe? if you teach them",
       "With a life jacket"
     ],
-    correctAnswer: "French bulldogs cant swim"
+    correctAnswer: "French bulldogs can't swim"
   },
   {
     question: "What is the largest recommended weight for a AKC show French bulldog",
@@ -86,10 +86,10 @@ function displayQuestion() {
     let questionTxt = STORE[questionNumber].question;
     let answers = STORE[questionNumber].answers;
     $("#question").text(questionTxt);
-    $("#answerLabel0").text(answers[0]);
-    $("#answerLabel1").text(answers[1]);
-    $("#answerLabel2").text(answers[2]);
-    $("#answerLabel3").text(answers[3]);
+    
+      let answerHtml = generateAnswers(answers);
+      
+      $("#answerList").html(answerHtml)
     $("#answer0").val(answers[0]);
     $("#answer1").val(answers[1]);
     $("#answer2").val(answers[2]);
@@ -103,7 +103,15 @@ function displayQuestion() {
     $("#finalStats").show();  
   }  
 }
-
+//---------------------
+function generateAnswers(answers) {
+  let output = "";
+  for ( let i = 0 ; i < answers.length; i++) {
+    output += `<input id="answer`+i+`" name="choices" type="radio" value="Answer`+i+`"/>
+    <label id="answerLabel`+i+`" for="answer`+i+`">`+answers[i]+`</label><br/>`
+  }
+  return output;
+}
 
 
     
@@ -116,6 +124,7 @@ function checkAnswer(e) {
   let correctAnswer = STORE[questionNumber].correctAnswer;
   
   if (userChoice === correctAnswer) {
+    $(".wrongAnsTxt").hide();
     score++;
     $("#correct-wrong").text("correct!");
     if (questionNumber === 4) {
@@ -127,6 +136,7 @@ function checkAnswer(e) {
     }
     
   } else {
+    $(".wrongAnsTxt").show();
     $("#responseImage").attr("src", "images/sad.jpg").attr("alt", "sad dog");
     $("#correct-wrong").text("wrong!");
     $("#wrongAnsTxt").text(STORE[questionNumber].correctAnswer);
@@ -144,7 +154,7 @@ function checkAnswer(e) {
 
 // display next question
 //add to questionNumber
-//reset radio button
+//check if button has been selected
 function nextQuestion() {
   $("input[name = 'choices']:checked")[0].checked = false;
   
