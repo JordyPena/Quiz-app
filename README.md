@@ -2,7 +2,7 @@
 
 [Live link]( https://jordypena.github.io/Quiz-app/)
 
-![Screenshot]()
+![Screenshot](https://github.com/JordyPena/Portfolio/blob/master/images/project-screenshots/Quiz-app-screenshot.PNG?raw=true)
 
 ## Summary 
 User has to answer fun trivia questions about French Buldogs, user is presented with a multiple choice question.
